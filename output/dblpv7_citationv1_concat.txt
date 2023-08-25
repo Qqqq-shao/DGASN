@@ -10,6 +10,4 @@ Namespace(Hid_dim_edge_clf=128, Hid_dim_edge_domain_1=128, Hid_dim_edge_domain_2
 5-th random initialization, the last testing auc_roc 0.735292 and auc_pr  0.266222  
 5-th random initialization, the last testing AP_pos 0.944325 AP_neg  0.266523    
 avg last testing auc_roc over 5 random splits: 0.731185 +/- 0.005330  
-avg last testing auc_pr over 5 random splits: 0.261401 +/- 0.007590  
-avg last testing AP_pos over 5 random splits: 0.940477 +/- 0.003504  
 avg last testing AP_neg over 5 random splits: 0.261697 +/- 0.007568  
