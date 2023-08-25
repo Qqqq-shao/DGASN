@@ -16,7 +16,7 @@ This repository contains the author's implementation in Pytorch for the paper "D
 
 # Datasets
 
-input/ contains the 5 datasets used in our paper.
+5 datasets are used in our paper.
 
 Each ".mat" file stores a network dataset, where
 
@@ -28,11 +28,9 @@ the variable "group" represents a node label matrix.
 
 # Code
 
-"ACDNE_model.py" is the implementation of the ACDNE model.
+"model.py" is the implementation of the DGASN model.
 
-"ACDNE_test_Blog.py" is an example case of the cross-network node classification task from Blog1 to Blog2 networks.
-
-"ACDNE_test_citation.py" is an example case of the cross-network node classification task from citationv1 to dblpv7 networks.
+"DGASN_main.py" is an example case of the cross-network node classification task from citationv1 to acmv9 networks.
 
 # Plese cite our paper as:
 
