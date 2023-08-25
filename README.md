@@ -4,15 +4,17 @@ This repository contains the author's implementation in Pytorch for the paper "D
 
 # Environment Requirement
 
-• python == 3.6.2
+• python == 3.6.7
 
-• pytorch == 1.13.1
+• pytorch == 1.10.2
 
-• numpy == 1.16.2
+• numpy == 1.19.2
 
-• scipy == 1.2.1
+• scipy == 1.5.1
 
-• dgl == 0.21.1
+• dgl == 0.8.2
+
+• sklearn == 0.24.2
 
 # Datasets
 
