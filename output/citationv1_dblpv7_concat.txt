@@ -1,0 +1,15 @@
+Namespace(Hid_dim_edge_clf=128, Hid_dim_edge_domain_1=128, Hid_dim_edge_domain_2=32, Hid_dim_node_clf=32, Weight_atten_loss=0.1, Weight_domain_dis=1, Weight_edge_clf=1, Weight_node_clf=1.0, attn_drop=0.3, cuda=True, dropout=0.5, edge_type='concat', epochs=1000, fastmode=False, gamma=5, gpu=0, in_drop=0.6, l2_w=0.0005, lr_ini=0.001, negative_slope=0.2, no_cuda=False, num_heads=8, num_hidden=64, num_layers=7, num_out_heads=1, residual=False, source='citationv1', target='dblpv7')
+1-th random initialization, the last testing auc_roc 0.669067 and auc_pr  0.307160  
+1-th random initialization, the last testing AP_pos 0.879699 AP_neg  0.307605  
+2-th random initialization, the last testing auc_roc 0.658733 and auc_pr  0.299721  
+2-th random initialization, the last testing AP_pos 0.873862 AP_neg  0.300101  
+3-th random initialization, the last testing auc_roc 0.664903 and auc_pr  0.292917  
+3-th random initialization, the last testing AP_pos 0.884558 AP_neg  0.293321  
+4-th random initialization, the last testing auc_roc 0.653554 and auc_pr  0.287115  
+4-th random initialization, the last testing AP_pos 0.879981 AP_neg  0.287512  
+5-th random initialization, the last testing auc_roc 0.656562 and auc_pr  0.290425  
+5-th random initialization, the last testing AP_pos 0.878623 AP_neg  0.290874  
+avg last testing auc_roc over 5 random splits: 0.660564 +/- 0.005650  
+avg last testing auc_pr over 5 random splits: 0.295468 +/- 0.007162  
+avg last testing AP_pos over 5 random splits: 0.879345 +/- 0.003414  
+avg last testing AP_neg over 5 random splits: 0.295883 +/- 0.007168  
