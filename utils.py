@@ -42,7 +42,7 @@ def edge_prepare(filename):
     adj2 = adj.toarray()
     row, col = np.diag_indices_from(adj2)
     adj2[row, col] = 0.0
-    adj = csc_matrix(adj2)#有正有负边1，0，-1
+    adj = csc_matrix(adj2)
 
     adj_up = sp.triu(adj, 0)
     com_labels_up = sp.triu(com_labels, 0)
@@ -53,7 +53,7 @@ def edge_prepare(filename):
     x_neg, y_neg = np.where(edge_labels == -1)
     neg_edges = np.array(list(zip(x_neg, y_neg)))
 
-    adj_pos = edge_labels.copy()#只有正边，1和0
+    adj_pos = edge_labels.copy()
     adj_pos = adj_pos + adj_pos.transpose()
     adj_pos[adj_pos == -1] = 0
 
