@@ -1,0 +1,28 @@
+Namespace(Hid_dim_edge_clf=128, Hid_dim_edge_domain_1=128, Hid_dim_edge_domain_2=32, Hid_dim_node_clf=32, Weight_atten_loss=0.0001, Weight_domain_dis=1, Weight_edge_clf=1, Weight_node_clf=1.0, attn_drop=0.0, cuda=True, dropout=0.5, edge_type='concat', epochs=1000, fastmode=False, gamma=5, gpu=0, in_drop=0.6, l2_w=0.001, lr_ini=0.001, negative_slope=0.2, no_cuda=False, num_heads=8, num_hidden=32, num_layers=8, num_out_heads=1, residual=False, source='dblpv7', target='citationv1')
+1-th random initialization, the last testing auc_roc 0.727070 and auc_pr  0.251611  
+840-th is the best epcoh 
+1-th random initialization, the best testing auc_roc 0.743261 and auc_pr  0.276623  
+1-th random initialization, the last testing AP_pos 0.937411 AP_neg  0.251959  
+2-th random initialization, the last testing auc_roc 0.723412 and auc_pr  0.253997  
+993-th is the best epcoh 
+2-th random initialization, the best testing auc_roc 0.740225 and auc_pr  0.283122  
+2-th random initialization, the last testing AP_pos 0.935256 AP_neg  0.254287  
+3-th random initialization, the last testing auc_roc 0.738037 and auc_pr  0.271921  
+636-th is the best epcoh 
+3-th random initialization, the best testing auc_roc 0.738082 and auc_pr  0.272645  
+3-th random initialization, the last testing AP_pos 0.942907 AP_neg  0.272182  
+4-th random initialization, the last testing auc_roc 0.732117 and auc_pr  0.263255  
+635-th is the best epcoh 
+4-th random initialization, the best testing auc_roc 0.739966 and auc_pr  0.283979  
+4-th random initialization, the last testing AP_pos 0.942485 AP_neg  0.263533  
+5-th random initialization, the last testing auc_roc 0.735292 and auc_pr  0.266222  
+889-th is the best epcoh 
+5-th random initialization, the best testing auc_roc 0.747899 and auc_pr  0.291339  
+5-th random initialization, the last testing AP_pos 0.944325 AP_neg  0.266523  
+weit_p: tensor([5., 1., 1.,  ..., 1., 1., 1.], device='cuda:0')
+avg best testing auc_roc over 5 random splits: 0.741887 +/- 0.003434  
+avg best testing auc_pr over 5 random splits: 0.281541 +/- 0.006446  
+avg last testing auc_roc over 5 random splits: 0.731185 +/- 0.005330  
+avg last testing auc_pr over 5 random splits: 0.261401 +/- 0.007590  
+avg last testing AP_pos over 5 random splits: 0.940477 +/- 0.003504  
+avg last testing AP_neg over 5 random splits: 0.261697 +/- 0.007568  

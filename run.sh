@@ -1,0 +1,1 @@
+python DGASN_main.py --lr-ini=0.001 --l2-w=0.001 --num-layers=8 --num-hidden=64 --attn-drop=0.1 --edge-type='concat' --source='citationv1' --target='acmv9' --Weight-node-clf=1 --Weight-atten-loss=0.1

@@ -1,0 +1,34 @@
+
+Namespace(Hid_dim_edge_clf=128, Hid_dim_edge_domain_1=128, Hid_dim_edge_domain_2=32, Hid_dim_node_clf=32, Weight_atten_loss=0.1, Weight_domain_dis=1, Weight_edge_clf=1, Weight_node_clf=1.0, attn_drop=0.1, cuda=True, dropout=0.5, edge_type='concat', epochs=1000, fastmode=False, gamma=5, gpu=0, in_drop=0.6, l2_w=0.001, lr_ini=0.001, negative_slope=0.2, no_cuda=False, num_heads=8, num_hidden=64, num_layers=8, num_out_heads=1, residual=False, source='citationv1', target='acmv9')
+1-th random initialization, the last testing auc_roc 0.714254 and auc_pr  0.241327  
+902-th is the best epcoh 
+1-th random initialization, the best testing auc_roc 0.717275 and auc_pr  0.239790  
+1-th random initialization, the last testing AP_pos 0.948973 AP_neg  0.241696  
+Namespace(Hid_dim_edge_clf=128, Hid_dim_edge_domain_1=128, Hid_dim_edge_domain_2=32, Hid_dim_node_clf=32, Weight_atten_loss=0.1, Weight_domain_dis=1, Weight_edge_clf=1, Weight_node_clf=1.0, attn_drop=0.1, cuda=True, dropout=0.5, edge_type='concat', epochs=1000, fastmode=False, gamma=5, gpu=0, in_drop=0.6, l2_w=0.001, lr_ini=0.001, negative_slope=0.2, no_cuda=False, num_heads=8, num_hidden=64, num_layers=8, num_out_heads=1, residual=False, source='citationv1', target='acmv9')
+1-th random initialization, the last testing auc_roc 0.714254 and auc_pr  0.241327  
+902-th is the best epcoh 
+1-th random initialization, the best testing auc_roc 0.717275 and auc_pr  0.239790  
+1-th random initialization, the last testing AP_pos 0.948973 AP_neg  0.241696  
+2-th random initialization, the last testing auc_roc 0.699495 and auc_pr  0.233226  
+748-th is the best epcoh 
+2-th random initialization, the best testing auc_roc 0.718304 and auc_pr  0.247771  
+2-th random initialization, the last testing AP_pos 0.939309 AP_neg  0.233605  
+3-th random initialization, the last testing auc_roc 0.720241 and auc_pr  0.242634  
+961-th is the best epcoh 
+3-th random initialization, the best testing auc_roc 0.719492 and auc_pr  0.244099  
+3-th random initialization, the last testing AP_pos 0.950574 AP_neg  0.243060  
+4-th random initialization, the last testing auc_roc 0.708010 and auc_pr  0.235250  
+490-th is the best epcoh 
+4-th random initialization, the best testing auc_roc 0.720013 and auc_pr  0.245256  
+4-th random initialization, the last testing AP_pos 0.948769 AP_neg  0.235605  
+5-th random initialization, the last testing auc_roc 0.705113 and auc_pr  0.237258  
+730-th is the best epcoh 
+5-th random initialization, the best testing auc_roc 0.707946 and auc_pr  0.240017  
+5-th random initialization, the last testing AP_pos 0.945233 AP_neg  0.237607  
+weit_p: tensor([1., 1., 1.,  ..., 1., 1., 1.], device='cuda:0')
+avg best testing auc_roc over 5 random splits: 0.716606 +/- 0.004433  
+avg best testing auc_pr over 5 random splits: 0.243386 +/- 0.003083  
+avg last testing auc_roc over 5 random splits: 0.709422 +/- 0.007204  
+avg last testing auc_pr over 5 random splits: 0.237939 +/- 0.003562  
+avg last testing AP_pos over 5 random splits: 0.946572 +/- 0.004029  
+avg last testing AP_neg over 5 random splits: 0.238314 +/- 0.003577  
