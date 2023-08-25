@@ -18,14 +18,14 @@ from sklearn.metrics import average_precision_score
 
 # Training settings
 parser = argparse.ArgumentParser()
-parser.add_argument("--gpu", type=int, default=0,
+parser.add_argument("--gpu", type=int, default=-1,
                     help="which GPU to use. Set -1 to use CPU.")
 parser.add_argument('--no-cuda', action='store_true', default=False,
                     help='Disables CUDA training.')
 parser.add_argument('--fastmode', action='store_true', default=False,
                     help='Validate during training pass.')
 
-parser.add_argument('--epochs', type=int, default=1000,
+parser.add_argument('--epochs', type=int, default=10,
                     help='Number of epochs to train.')
 parser.add_argument('--lr-ini', type=float, default=0.001,
                     help='Initial learning rate.')
@@ -82,7 +82,7 @@ args = parser.parse_args()
 args.cuda = not args.no_cuda and torch.cuda.is_available()
 #
  
-numRandom = 5 # number of random splits
+numRandom = 2 # number of random splits
 source = args.source
 target = args.target
 edge_type = args.edge_type
@@ -376,43 +376,21 @@ while random_state < numRandom:
     print("Optimization Finished!")
     print("Total time elapsed: {:.4f}s".format(time.time() - t_total))
     print("The last testing auc_roc %f and auc_pr % f " % (last_auc_roc_test, last_auc_pr_test))
-    ##find the epoch with highest validation AUC_ROC
-    test = np.add(test_auc_roc_t_all, test_auc_pr_t_all)
-    best_epoch = np.argmax(test)
-    ##find the epoch with lowest validation loss
-    test_auc_roc_best_val_epoch = test_auc_roc_t_all[best_epoch]
-    test_auc_pr_best_val_epoch = test_auc_pr_t_all[best_epoch]
-    test_AP_pos_best_val_epoch = AP_t_pos_all[best_epoch]
-    test_AP_neg_best_val_epoch = AP_t_neg_all[best_epoch]
 
-    print('the best validation epoch', best_epoch)
-    print('the best testing auc_roc %f and auc_pr % f ' % (
-        test_auc_roc_best_val_epoch, test_auc_pr_best_val_epoch))
 
     f.write('%d-th random initialization, the last testing auc_roc %f and auc_pr % f  \n' % (
         random_state, last_auc_roc_test, last_auc_pr_test))
-    f.flush()
-    f.write('%d-th is the best epcoh \n' % (best_epoch))
-    f.flush()
-    f.write('%d-th random initialization, the best testing auc_roc %f and auc_pr % f  \n' % (
-        random_state, test_auc_roc_best_val_epoch, test_auc_pr_best_val_epoch))
-    f.flush()
+
     f.write('%d-th random initialization, the last testing AP_pos %f AP_neg % f  \n' % (
         random_state, AP_t_pos, AP_t_neg))
     f.flush()
-    best_auc_roc_trp.append(test_auc_roc_best_val_epoch)
-    best_auc_pr_trp.append(test_auc_pr_best_val_epoch)
+
     last_auc_roc_trp.append(last_auc_roc_test)
     last_auc_pr_trp.append(last_auc_pr_test)
     last_AP_neg_trp.append(AP_t_neg)
     last_AP_pos_trp.append(AP_t_pos)
 
-   
 
-best_avg_auc_roc = np.mean(best_auc_roc_trp)
-best_std_auc_roc = np.std(best_auc_roc_trp)
-best_avg_auc_pr = np.mean(best_auc_pr_trp)
-best_std_auc_pr = np.std(best_auc_pr_trp)
 
 last_avg_auc_roc = np.mean(last_auc_roc_trp)
 last_std_auc_roc = np.std(last_auc_roc_trp)
@@ -424,35 +402,26 @@ last_std_AP_neg = np.std(last_AP_neg_trp)
 last_avg_AP_pos = np.mean(last_AP_pos_trp)
 last_std_AP_pos = np.std(last_AP_pos_trp)
 
-print('avg best testing auc_roc over %d random initialization: %f +/- %f' % (
-    numRandom, best_avg_auc_roc, best_std_auc_roc))
-print(
-    'avg best testing auc_pr over %d random initialization: %f +/- %f' % (numRandom, best_avg_auc_pr, best_std_auc_pr))
+
 print('avg last testing auc_roc over %d random initialization: %f +/- %f' % (
     numRandom, last_avg_auc_roc, last_std_auc_roc))
-print(
-    'avg last testing auc_pr over %d random initialization: %f +/- %f' % (numRandom, last_avg_auc_pr, last_std_auc_pr))
-print(
-    'avg last testing AP_pos over %d random initialization: %f +/- %f' % (numRandom, last_avg_AP_pos, last_std_AP_pos))
+# print(
+#     'avg last testing auc_pr over %d random initialization: %f +/- %f' % (numRandom, last_avg_auc_pr, last_std_auc_pr))
+# print(
+#     'avg last testing AP_pos over %d random initialization: %f +/- %f' % (numRandom, last_avg_AP_pos, last_std_AP_pos))
 print(
     'avg last testing AP_neg over %d random initialization: %f +/- %f' % (numRandom, last_avg_AP_neg, last_std_AP_neg))
 
-f.write('weit_p: %s\n' % weit_p)
-f.write('avg best testing auc_roc over %d random splits: %f +/- %f  \n' % (
-    numRandom, best_avg_auc_roc, best_std_auc_roc))
-f.flush()
-f.write('avg best testing auc_pr over %d random splits: %f +/- %f  \n' % (
-    numRandom, best_avg_auc_pr, best_std_auc_pr))
-f.flush()
+
 f.write('avg last testing auc_roc over %d random splits: %f +/- %f  \n' % (
     numRandom, last_avg_auc_roc, last_std_auc_roc))
 f.flush()
-f.write('avg last testing auc_pr over %d random splits: %f +/- %f  \n' % (
-    numRandom, last_avg_auc_pr, last_std_auc_pr))
-f.flush()
-f.write('avg last testing AP_pos over %d random splits: %f +/- %f  \n' % (
-    numRandom, last_avg_AP_pos, last_std_AP_pos))
-f.flush()
+# f.write('avg last testing auc_pr over %d random splits: %f +/- %f  \n' % (
+#     numRandom, last_avg_auc_pr, last_std_auc_pr))
+# f.flush()
+# f.write('avg last testing AP_pos over %d random splits: %f +/- %f  \n' % (
+#     numRandom, last_avg_AP_pos, last_std_AP_pos))
+# f.flush()
 
 f.write('avg last testing AP_neg over %d random splits: %f +/- %f  \n' % (
     numRandom, last_avg_AP_neg, last_std_AP_neg))
