@@ -310,7 +310,7 @@ while random_state < numRandom:
 
         '''Compute evaluation on test data by the end of each epoch'''
     
-        model.eval()  
+        model.eval()
         with torch.no_grad():
             GradReverse.rate = 1.0
 
@@ -353,6 +353,7 @@ while random_state < numRandom:
     print("Optimization Finished!")
     print("Total time elapsed: {:.4f}s".format(time.time() - t_total))
     print("The last testing auc_roc %f  " % (last_auc_roc_test))
+    print("The last testing AP_neg %f  " % (AP_t_neg))
 
 
     f.write('%d-th random initialization, the last testing auc_roc %f \n' % (

@@ -1,13 +1,13 @@
 Namespace(Hid_dim_edge_clf=128, Hid_dim_edge_domain_1=128, Hid_dim_edge_domain_2=32, Hid_dim_node_clf=32, Weight_atten_loss=0.1, Weight_domain_dis=1, Weight_edge_clf=1, Weight_node_clf=0.01, attn_drop=0.3, cuda=True, dropout=0.5, edge_type='concat', epochs=1000, fastmode=False, gamma=5, gpu=0, in_drop=0.6, l2_w=0.001, lr_ini=0.001, negative_slope=0.2, no_cuda=False, num_heads=8, num_hidden=64, num_layers=3, num_out_heads=1, residual=False, source='dblpv7', target='acmv9')
-1-th random initialization, the last testing auc_roc 0.651456 and auc_pr  0.175754  
-1-th random initialization, the last testing AP_pos 0.935071 AP_neg  0.176306  
-2-th random initialization, the last testing auc_roc 0.659263 and auc_pr  0.181044  
-2-th random initialization, the last testing AP_pos 0.936230 AP_neg  0.181599  
-3-th random initialization, the last testing auc_roc 0.657486 and auc_pr  0.179130  
-3-th random initialization, the last testing AP_pos 0.936592 AP_neg  0.179642  
-4-th random initialization, the last testing auc_roc 0.661379 and auc_pr  0.181363  
-4-th random initialization, the last testing AP_pos 0.936741 AP_neg  0.181920  
-5-th random initialization, the last testing auc_roc 0.663861 and auc_pr  0.180314  
-5-th random initialization, the last testing AP_pos 0.936964 AP_neg  0.180776  
+1-th random initialization, the last testing auc_roc 0.651456
+1-th random initialization, the last testing AP_neg  0.176306
+2-th random initialization, the last testing auc_roc 0.659263
+2-th random initialization, the last testing AP_neg  0.181599
+3-th random initialization, the last testing auc_roc 0.657486
+3-th random initialization, the last testing AP_neg  0.179642
+4-th random initialization, the last testing auc_roc 0.661379
+4-th random initialization, the last testing AP_neg  0.181920
+5-th random initialization, the last testing auc_roc 0.663861
+5-th random initialization, the last testing AP_neg  0.180776
 avg last testing auc_roc over 5 random splits: 0.658689 +/- 0.004197  
 avg last testing AP_neg over 5 random splits: 0.180049 +/- 0.002030  

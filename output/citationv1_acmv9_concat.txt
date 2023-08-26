@@ -1,16 +1,17 @@
 
+
 Namespace(Hid_dim_edge_clf=128, Hid_dim_edge_domain_1=128, Hid_dim_edge_domain_2=32, Hid_dim_node_clf=32, Weight_atten_loss=0.1, Weight_domain_dis=1, Weight_edge_clf=1, Weight_node_clf=1.0, attn_drop=0.1, cuda=True, dropout=0.5, edge_type='concat', epochs=1000, fastmode=False, gamma=5, gpu=0, in_drop=0.6, l2_w=0.001, lr_ini=0.001, negative_slope=0.2, no_cuda=False, num_heads=8, num_hidden=64, num_layers=8, num_out_heads=1, residual=False, source='citationv1', target='acmv9')
-1-th random initialization, the last testing auc_roc 0.714254 and auc_pr  0.241327
-1-th random initialization, the last testing AP_pos 0.948973 AP_neg  0.241696  
-2-th random initialization, the last testing auc_roc 0.699495 and auc_pr  0.233226
-2-th random initialization, the last testing AP_pos 0.939309 AP_neg  0.233605  
-3-th random initialization, the last testing auc_roc 0.720241 and auc_pr  0.242634
-3-th random initialization, the last testing AP_pos 0.950574 AP_neg  0.243060  
-4-th random initialization, the last testing auc_roc 0.708010 and auc_pr  0.235250
-4-th random initialization, the last testing AP_pos 0.948769 AP_neg  0.235605  
-5-th random initialization, the last testing auc_roc 0.705113 and auc_pr  0.237258
-5-th random initialization, the last testing AP_pos 0.945233 AP_neg  0.237607
+1-th random initialization, the last testing auc_roc 0.714254
+1-th random initialization, the last testing AP_neg  0.241696
+2-th random initialization, the last testing auc_roc 0.699495
+2-th random initialization, the last testing AP_neg  0.233605
+3-th random initialization, the last testing auc_roc 0.720241
+3-th random initialization, the last testing AP_neg  0.243060
+4-th random initialization, the last testing auc_roc 0.708010
+4-th random initialization, the last testing AP_neg  0.235605
+5-th random initialization, the last testing auc_roc 0.705113
+5-th random initialization, the last testing AP_neg  0.237607
 avg last testing auc_roc over 5 random splits: 0.709422 +/- 0.007204
-avg last testing AP_neg over 5 random splits: 0.238314 +/- 0.003577  
+avg last testing AP_neg over 5 random splits: 0.238314 +/- 0.003577
 
 
