@@ -94,14 +94,14 @@ f = open('./output/' +  emb_filename + '_' + edge_type + '.txt', 'a')
 f.write('{}\n'.format(args))
 f.flush()
 
-# 读出源域的数据
+
 A_s, X_s, Y_s = utils.load_network(str(source) + '.mat')
 Y_s = torch.Tensor(Y_s)
 num_feats = X_s.shape[1]
 
 features_s = normalize_features(X_s.todense())
 features_s = torch.Tensor(features_s)
-# 读出目标域的数据
+
 A_t, X_t, Y_t = utils.load_network(str(target) + '.mat')
 Y_t = torch.Tensor(Y_t)
 num_nodes_T = X_t.shape[0]
@@ -113,7 +113,6 @@ features_t = torch.Tensor(features_t)
 pos_edges_s, neg_edges_s, _, _ = edge_prepare(source)
 pos_edges_t, neg_edges_t, _, _ = edge_prepare(target)
 
-# adj_net_pro_s = torch.Tensor(adj_net_pro_s)
 labels_pos_s = np.ones((pos_edges_s.shape[0], 1))
 labels_neg_s = np.zeros((neg_edges_s.shape[0], 1))
 labels_s = np.vstack((labels_pos_s, labels_neg_s))
@@ -125,7 +124,7 @@ labels_t = np.vstack((labels_pos_t, labels_neg_t))
 
 random_state = 0
 
-n_input_s = X_s.shape[1]  # n_input_s和n_input_t都是1000
+n_input_s = X_s.shape[1]
 n_input_t = X_t.shape[1]
 
 xb_s = torch.FloatTensor(X_s.tocsr().toarray())
@@ -311,7 +310,7 @@ while random_state < numRandom:
 
         '''Compute evaluation on test data by the end of each epoch'''
     
-        model.eval()  # deactivates dropout during validation run.
+        model.eval()  
         with torch.no_grad():
             GradReverse.rate = 1.0
 
