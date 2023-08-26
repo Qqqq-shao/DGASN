@@ -25,7 +25,7 @@ parser.add_argument('--no-cuda', action='store_true', default=False,
 parser.add_argument('--fastmode', action='store_true', default=False,
                     help='Validate during training pass.')
 
-parser.add_argument('--epochs', type=int, default=10,
+parser.add_argument('--epochs', type=int, default=1000,
                     help='Number of epochs to train.')
 parser.add_argument('--lr-ini', type=float, default=0.001,
                     help='Initial learning rate.')
@@ -82,7 +82,7 @@ args = parser.parse_args()
 args.cuda = not args.no_cuda and torch.cuda.is_available()
 #
  
-numRandom = 2 # number of random splits
+numRandom = 5 # number of random splits
 source = args.source
 target = args.target
 edge_type = args.edge_type
@@ -229,20 +229,16 @@ while random_state < numRandom:
     clf_loss_f = F.binary_cross_entropy_with_logits
     cf_loss_f_node = nn.BCEWithLogitsLoss(reduction='none')
     domain_loss_f = nn.CrossEntropyLoss()
-    mseloss_f = torch.nn.MSELoss()
+
 
     train_loss_all = []
     train_auc_roc_s_all = []
-    train_auc_pr_s_all = []
     test_auc_roc_t_all = []
-    test_auc_pr_t_all = []
     domain_loss_edge_all = []
-
     total_loss_all = []
-    AP_s_pos_all = []
-    AP_t_pos_all = []
     AP_s_neg_all = []
     AP_t_neg_all = []
+
     f1_t = None
     t_total = time.time()
     for cEpoch in range(args.epochs):
@@ -327,17 +323,11 @@ while random_state < numRandom:
         pred_prob_s = F.softmax(pred_logit_xs)
         pred_prob_t = F.softmax(pred_logit_xt)
 
-        auc_pr_train_s = GET_AUC_PR(edge_label_s_random_tensor[:, 2].reshape(-1, 1),
-                                    pred_logit_xs)  # Input contains NaN, infinity or a value too large for dtype('float32').
         auc_roc_train_s = GET_AUC_ROC(edge_label_s_random_tensor[:, 2].reshape(-1, 1), pred_logit_xs)
 
         auc_roc_test_t = GET_AUC_ROC(edge_label_t_random_tensor[:, 2].reshape(-1, 1), pred_logit_xt)
-        auc_pr_test_t = GET_AUC_PR(edge_label_t_random_tensor[:, 2].reshape(-1, 1), pred_logit_xt)
 
-        AP_s_pos = average_precision_score(edge_label_s_random_tensor[:, 2].reshape(-1, 1).cpu(),
-                                           pred_logit_xs.cpu().detach().numpy(), pos_label=1)
-        AP_t_pos = average_precision_score(edge_label_t_random_tensor[:, 2].reshape(-1, 1).cpu(),
-                                           pred_logit_xt.cpu().detach().numpy(), pos_label=1)
+
 
         AP_s_neg = average_precision_score(1 - edge_label_s_random_tensor[:, 2].reshape(-1, 1).cpu(),
                                            1 - pred_logit_xs.cpu().detach().numpy(), pos_label=1)
@@ -345,12 +335,8 @@ while random_state < numRandom:
                                            1 - pred_logit_xt.cpu().detach().numpy(), pos_label=1)
 
         train_auc_roc_s_all.append(auc_roc_train_s)
-        train_auc_pr_s_all.append(auc_pr_train_s)
         test_auc_roc_t_all.append(auc_roc_test_t)
-        test_auc_pr_t_all.append(auc_pr_test_t)
 
-        AP_s_pos_all.append(AP_s_pos)
-        AP_t_pos_all.append(AP_t_pos)
         AP_s_neg_all.append(AP_s_neg)
         AP_t_neg_all.append(AP_t_neg)
 
@@ -358,57 +344,39 @@ while random_state < numRandom:
             print('Epoch: {:04d}'.format(cEpoch + 1),
                   'total_loss: {:.4f}'.format(total_loss.item()),
                   'Source auc_roc: {:.4f}'.format(auc_roc_train_s.item()),
-                  'Source auc_pr: {:.4f}'.format(auc_pr_train_s.item()),
                   'Target testing auc_roc: {:.4f}'.format(auc_roc_test_t.item()),
-                  'Target testing auc_pr: {:.4f}'.format(auc_pr_test_t.item()),
-                  'Source AP_pos: {:.4f}'.format(AP_s_pos.item()),
                   'Source AP_neg: {:.4f}'.format(AP_s_neg.item()),
-                  'Target AP_pos: {:.4f}'.format(AP_t_pos.item()),
                   'Target AP_neg: {:.4f}'.format(AP_t_neg.item()),
-                  'Source clf_loss_adj: {:.4f}'.format(atten_loss.item()),
-                  'Domain loss edge: {:.4f}'.format(domain_loss_edge.item()),
-                  # 'Domain loss node: {:.4f}'.format(domain_loss_node.item()),
                   'time: {:.4f}s'.format(time.time() - t))
  
    
     last_auc_roc_test = auc_roc_test_t
-    last_auc_pr_test = auc_pr_test_t
     print("Optimization Finished!")
     print("Total time elapsed: {:.4f}s".format(time.time() - t_total))
     print("The last testing auc_roc %f and auc_pr % f " % (last_auc_roc_test, last_auc_pr_test))
 
 
-    f.write('%d-th random initialization, the last testing auc_roc %f and auc_pr % f  \n' % (
-        random_state, last_auc_roc_test, last_auc_pr_test))
+    f.write('%d-th random initialization, the last testing auc_roc %f \n' % (
+        random_state, last_auc_roc_test))
 
-    f.write('%d-th random initialization, the last testing AP_pos %f AP_neg % f  \n' % (
-        random_state, AP_t_pos, AP_t_neg))
+    f.write('%d-th random initialization, the last testing AP_neg % f  \n' % (
+        random_state,  AP_t_neg))
     f.flush()
 
     last_auc_roc_trp.append(last_auc_roc_test)
-    last_auc_pr_trp.append(last_auc_pr_test)
     last_AP_neg_trp.append(AP_t_neg)
-    last_AP_pos_trp.append(AP_t_pos)
-
 
 
 last_avg_auc_roc = np.mean(last_auc_roc_trp)
 last_std_auc_roc = np.std(last_auc_roc_trp)
-last_avg_auc_pr = np.mean(last_auc_pr_trp)
-last_std_auc_pr = np.std(last_auc_pr_trp)
-
 last_avg_AP_neg = np.mean(last_AP_neg_trp)
 last_std_AP_neg = np.std(last_AP_neg_trp)
-last_avg_AP_pos = np.mean(last_AP_pos_trp)
-last_std_AP_pos = np.std(last_AP_pos_trp)
+
 
 
 print('avg last testing auc_roc over %d random initialization: %f +/- %f' % (
     numRandom, last_avg_auc_roc, last_std_auc_roc))
-# print(
-#     'avg last testing auc_pr over %d random initialization: %f +/- %f' % (numRandom, last_avg_auc_pr, last_std_auc_pr))
-# print(
-#     'avg last testing AP_pos over %d random initialization: %f +/- %f' % (numRandom, last_avg_AP_pos, last_std_AP_pos))
+
 print(
     'avg last testing AP_neg over %d random initialization: %f +/- %f' % (numRandom, last_avg_AP_neg, last_std_AP_neg))
 
@@ -416,12 +384,6 @@ print(
 f.write('avg last testing auc_roc over %d random splits: %f +/- %f  \n' % (
     numRandom, last_avg_auc_roc, last_std_auc_roc))
 f.flush()
-# f.write('avg last testing auc_pr over %d random splits: %f +/- %f  \n' % (
-#     numRandom, last_avg_auc_pr, last_std_auc_pr))
-# f.flush()
-# f.write('avg last testing AP_pos over %d random splits: %f +/- %f  \n' % (
-#     numRandom, last_avg_AP_pos, last_std_AP_pos))
-# f.flush()
 
 f.write('avg last testing AP_neg over %d random splits: %f +/- %f  \n' % (
     numRandom, last_avg_AP_neg, last_std_AP_neg))
