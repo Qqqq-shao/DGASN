@@ -18,7 +18,7 @@ from sklearn.metrics import average_precision_score
 
 # Training settings
 parser = argparse.ArgumentParser()
-parser.add_argument("--gpu", type=int, default=-1,
+parser.add_argument("--gpu", type=int, default=0,
                     help="which GPU to use. Set -1 to use CPU.")
 parser.add_argument('--no-cuda', action='store_true', default=False,
                     help='Disables CUDA training.')
@@ -353,7 +353,7 @@ while random_state < numRandom:
     last_auc_roc_test = auc_roc_test_t
     print("Optimization Finished!")
     print("Total time elapsed: {:.4f}s".format(time.time() - t_total))
-    print("The last testing auc_roc %f and auc_pr % f " % (last_auc_roc_test, last_auc_pr_test))
+    print("The last testing auc_roc %f  " % (last_auc_roc_test))
 
 
     f.write('%d-th random initialization, the last testing auc_roc %f \n' % (
