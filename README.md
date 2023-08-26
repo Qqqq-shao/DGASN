@@ -28,7 +28,7 @@ the variable "attrb" represents a node attribute matrix,
 
 the variable "group" represents a node label matrix.
 
-Specifically, a homophilous edge indicates that the two connected nodes share at least one common class-label. On the contrary, a heterophilous edge reflects that the two connected nodes have totally different class-labels.
+We generate the edge labels based on the node label of two nodes on each edge. Specifically, a homophilous edge indicates that the two connected nodes share at least one common class-label. On the contrary, a heterophilous edge reflects that the two connected nodes have totally different class-labels.
 
 # Code
 
