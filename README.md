@@ -4,6 +4,8 @@ This repository contains the author's implementation in Pytorch for the paper "D
 
 # Environment Requirement
 
+For reproduction of the results reported in our paper, please use the environment below:
+
 • python == 3.6.7
 
 • pytorch == 1.10.2
@@ -16,7 +18,6 @@ This repository contains the author's implementation in Pytorch for the paper "D
 
 • sklearn == 0.24.2
 
-Our experiments were conducted on a single RTX 3080 GPU with 10GB memory and 12 vCPU Intel(R) Xeon(R) Platinum 8255C CPU.
 
 # Datasets
 
