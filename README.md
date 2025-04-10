@@ -45,5 +45,5 @@ On the contrary, a heterophilous edge reflects that the two connected nodes have
 
 # Plese cite our paper as:
 
-Xiao Shen, Mengqiu Shao, Shirui Pan, Laurence T. Yang and Xi Zhou, "Domain-adaptive Graph Attention-supervised Network for Cross-network Edge Classification," IEEE Trans. Neural. Netw. Learn. Syst., 2023.
+**Xiao Shen, Mengqiu Shao, Shirui Pan, Laurence T. Yang and Xi Zhou, "Domain-adaptive Graph Attention-supervised Network for Cross-network Edge Classification," IEEE Trans. Neural. Netw. Learn. Syst., 2023.**
 
